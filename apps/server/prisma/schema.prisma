@@ -8,20 +8,20 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  name      String
-  role      Role     @default(USER)
-  reviews   Review[]
-  favorites Favorite[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String     @id @default(cuid())
+  phoneNumber String     @unique
+  password    String
+  name        String
+  role        Role       @default(USER)
+  reviews     Review[]
+  favorites   Favorite[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 }
 
 model Place {
-  id          String    @id @default(cuid())
-  slug        String    @unique
+  id          String     @id @default(cuid())
+  slug        String     @unique
   name        String
   description String
   latitude    Float
@@ -30,8 +30,8 @@ model Place {
   routes      Route[]
   reviews     Review[]
   favorites   Favorite[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 }
 
 model Route {
@@ -47,11 +47,11 @@ model Route {
 }
 
 model RoutePoint {
-  id        String  @id @default(cuid())
+  id        String @id @default(cuid())
   order     Int
   latitude  Float
   longitude Float
-  route     Route   @relation(fields: [routeId], references: [id])
+  route     Route  @relation(fields: [routeId], references: [id])
   routeId   String
 }
 
@@ -67,11 +67,12 @@ model Review {
 }
 
 model Favorite {
-  id        String @id @default(cuid())
-  user      User   @relation(fields: [userId], references: [id])
-  userId    String
-  place     Place  @relation(fields: [placeId], references: [id])
-  placeId   String
+  id      String @id @default(cuid())
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String
+  place   Place  @relation(fields: [placeId], references: [id])
+  placeId String
+
   @@unique([userId, placeId])
 }
 
@@ -79,4 +80,3 @@ enum Role {
   USER
   ADMIN
 }
-
