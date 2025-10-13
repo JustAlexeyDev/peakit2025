@@ -1,0 +1,43 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+        
+    - name: Install and build frontend
+      working-directory: ./frontend
+      run: |
+        bun install
+        bun run build
+        
+    - name: Install backend dependencies
+      working-directory: ./backend
+      run: bun install
+      
+    - name: Build Android APK
+      working-directory: ./frontend
+      run: |
+        bunx cap init MyApp com.example.myapp --web-dir build
+        bunx cap add android
+        cd android
+        chmod +x gradlew
+        ./gradlew assembleDebug
+        
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-debug
+        path: frontend/android/app/build/outputs/apk/debug/app-debug.apk
