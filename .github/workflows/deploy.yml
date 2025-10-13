@@ -23,28 +23,40 @@ jobs:
       run: |
         bun install
         bun run build
-      
-    - name: Setup Java for Android
+        
+    - name: Setup Java 17
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: '17'
         
-    - name: Build Android APK
+    - name: Verify Java version
+      run: java -version
+      
+    - name: Install Capacitor
+      working-directory: ./frontend
+      run: bun add -d @capacitor/cli @capacitor/core @capacitor/android
+      
+    - name: Initialize Capacitor if needed
       working-directory: ./frontend
       run: |
-        # Инициализируем Capacitor если нужно
-        if [ ! -f "capacitor.config.ts" ]; then
-          bunx @capacitor/cli init MyApp com.example.myapp --web-dir build
+        if [ ! -f "capacitor.config.json" ] && [ ! -f "capacitor.config.ts" ] && [ ! -f "capacitor.config.js" ]; then
+          bunx cap init MyApp com.example.myapp --web-dir build
         fi
-        bunx @capacitor/cli add android
-        bunx @capacitor/cli sync
-        cd android
-        chmod +x gradlew
-        ./gradlew assembleDebug
         
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: app-debug
-        path: frontend/android/app/build/outputs/apk/debug/app-debug.apk
+    - name: Add Android platform
+      working-directory: ./frontend
+      run: |
+        if [ ! -d "android" ]; then
+          bunx cap add android
+        fi
+        
+    - name: Sync Capacitor
+      working-directory: ./frontend
+      run: bunx cap sync
+      
+    - name: Build Android APK
+      working-directory: ./frontend/android
+      run: |
+        chmod +x gradlew
+        ./gradlew assembleDebug -x lint
