@@ -23,10 +23,6 @@ jobs:
       run: |
         bun install
         bun run build
-        
-    - name: Install backend dependencies
-      working-directory: ./backend
-      run: bun install
       
     - name: Setup Java for Android
       uses: actions/setup-java@v4
