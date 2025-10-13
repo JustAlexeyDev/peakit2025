@@ -42,7 +42,7 @@ services:
       - "19001:19001"   # Legacy manifest (if needed)
       - "19002:19002"   # Expo devtools
       - "8081:8081"     # Metro bundler
-    command: bunx --bun expo start --lan --clear
+    command: npx expo start --lan --clear
 volumes:
   pgdata:
 
