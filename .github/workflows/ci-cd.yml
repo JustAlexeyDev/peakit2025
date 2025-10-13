@@ -54,7 +54,6 @@ jobs:
         path: frontend/build/
         retention-days: 1
 
-  # Тестирование backend (если есть тесты)
 
   # Сборка Android APK (только для main branch)
   android-build:
