@@ -9,15 +9,15 @@
 
 ## Технологии:
 ### Языки
+- Java, TypeScript, JAvaScript, Batch,
 
 ### Фреймворки
 
 
-#### Библиотеки Python
-
 ### База данных
+- Local
 
 ### Other tools
- - Expo App
+ - Capacitor
 
 ## Установка и запуск Frontend части:
