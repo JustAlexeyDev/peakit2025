@@ -14,3 +14,6 @@ coverage/
 ~$йс_2_приложение_мобильное_приложение_ Гид_по_Ленским_столбам.docx
 /frontend/android
 /frontend/build
+/backend/api/__pycache__
+/backend/backend/__pycache__
+/backend/venv
