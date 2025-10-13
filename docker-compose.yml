@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: peakit
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  server:
+    build:
+      context: ./apps/server
+    env_file:
+      - ./apps/server/.env
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/peakit?schema=public
+      NODE_ENV: development
+    depends_on:
+      - db
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./apps/server:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run dev
+volumes:
+  pgdata:
+

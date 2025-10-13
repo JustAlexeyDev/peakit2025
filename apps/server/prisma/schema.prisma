@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(USER)
+  reviews   Review[]
+  favorites Favorite[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Place {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        String
+  description String
+  latitude    Float
+  longitude   Float
+  category    String
+  routes      Route[]
+  reviews     Review[]
+  favorites   Favorite[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Route {
+  id          String       @id @default(cuid())
+  title       String
+  description String
+  places      Place[]
+  points      RoutePoint[]
+  durationMin Int
+  distanceKm  Float
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model RoutePoint {
+  id        String  @id @default(cuid())
+  order     Int
+  latitude  Float
+  longitude Float
+  route     Route   @relation(fields: [routeId], references: [id])
+  routeId   String
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int
+  comment   String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  place     Place    @relation(fields: [placeId], references: [id])
+  placeId   String
+  createdAt DateTime @default(now())
+}
+
+model Favorite {
+  id        String @id @default(cuid())
+  user      User   @relation(fields: [userId], references: [id])
+  userId    String
+  place     Place  @relation(fields: [placeId], references: [id])
+  placeId   String
+  @@unique([userId, placeId])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+

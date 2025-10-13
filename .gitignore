@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.expo/
+.expo-shared/
+.turbo/
+.DS_Store
+*.log
+apps/server/node_modules/
+apps/mobile/node_modules/
+apps/server/.env
+apps/server/prisma/dev.db*
+coverage/
+
