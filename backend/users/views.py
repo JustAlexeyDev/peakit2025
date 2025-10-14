@@ -1,4 +1,5 @@
 from rest_framework import viewsets, status, permissions
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
@@ -125,6 +126,7 @@ class AuthViewSet(viewsets.ViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
+    parser_classes = (MultiPartParser, FormParser, JSONParser)
     
     def get_queryset(self):
         return CustomUser.objects.filter(id=self.request.user.id)

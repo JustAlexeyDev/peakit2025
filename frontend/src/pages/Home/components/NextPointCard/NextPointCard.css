@@ -1,7 +1,50 @@
+.next-point-card--clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.next-point-card--clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.next-point-card--no-point {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+}
+
+.next-point-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
 .next-point-card__title {
   font-size: 20px;
   font-weight: 700;
-  margin: 0 0 12px 0;
+  margin: 0;
+}
+
+.next-point-card__mark-btn {
+  background: #007aff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.next-point-card__mark-btn:hover {
+  background: #0056b3;
+  transform: scale(1.1);
 }
 
 .next-point-card__info {
@@ -21,12 +64,23 @@
 
 .next-point-card__detail {
   font-size: 16px;
-  color: #8e8e93;
+
 }
 
 .next-point-card__hint {
   font-size: 15px;
-  color: #8e8e93;
   font-style: italic;
-  margin: 0;
+  margin: 0 0 8px 0;
+}
+
+.next-point-card__action {
+  text-align: center;
+  padding-top: 8px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.next-point-card__action-text {
+  font-size: 12px;
+  color: #007aff;
+  font-weight: 500;
 }

@@ -16,6 +16,7 @@ class SMSCodeSerializer(serializers.Serializer):
     device_info = serializers.JSONField(default=dict, required=False)
 
 class UserSerializer(serializers.ModelSerializer):
+    avatar = serializers.ImageField(read_only=True)
     class Meta:
         model = CustomUser
         fields = ['id', 'phone', 'username', 'full_name', 'avatar', 'is_phone_verified', 
@@ -23,10 +24,11 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'is_phone_verified', 'created_at']
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    avatar = serializers.ImageField(required=False, allow_null=True)
     class Meta:
         model = CustomUser
-        fields = ['id', 'phone', 'username', 'full_name', 'avatar', 'first_name', 
-                 'last_name', 'is_phone_verified', 'last_activity']
+        fields = ['id', 'phone', 'username', 'full_name', 'first_name', 
+                 'last_name', 'avatar', 'is_phone_verified', 'last_activity']
         read_only_fields = ['id', 'phone', 'is_phone_verified']
 
 class LoginSerializer(serializers.Serializer):

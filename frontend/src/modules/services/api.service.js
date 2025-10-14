@@ -1,4 +1,4 @@
-// src/modules/services/apiService.js
+
 const API_BASE_URL = 'http://127.0.0.1:8000/api';
 
 class ApiService {
@@ -20,9 +20,13 @@ class ApiService {
     const url = `${API_BASE_URL}${endpoint}`;
     
     const headers = {
-      'Content-Type': 'application/json',
       ...options.headers,
     };
+
+    // Only set JSON content-type if not FormData
+    if (!(options.body instanceof FormData)) {
+      headers['Content-Type'] = 'application/json';
+    }
 
     if (this.token) {
       headers['Authorization'] = `Token ${this.token}`;
@@ -64,16 +68,18 @@ class ApiService {
   }
 
   async post(endpoint, data) {
+    const body = data instanceof FormData ? data : JSON.stringify(data);
     return this.request(endpoint, {
       method: 'POST',
-      body: JSON.stringify(data),
+      body,
     });
   }
 
   async put(endpoint, data) {
+    const body = data instanceof FormData ? data : JSON.stringify(data);
     return this.request(endpoint, {
       method: 'PUT',
-      body: JSON.stringify(data),
+      body,
     });
   }
 

@@ -19,3 +19,5 @@ coverage/
 /backend/venv
 /backend/users/__pycache__
 /.idea
+/backend/api/management/commands/__pycache__
+*.pyc

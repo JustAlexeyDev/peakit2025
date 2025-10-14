@@ -1,0 +1,51 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "city_yakutsk",
+        "name_ru": "Якутск",
+        "type": "CITY",
+        "audio_id": "a_yakutsk_intro",
+        "radius": 400,
+        "cooldown_sec": 7200
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [129.73, 62.03]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "city_pokrovsk",
+        "name_ru": "Покровск",
+        "type": "CITY",
+        "audio_id": "a_pokrovsk_intro",
+        "radius": 350,
+        "cooldown_sec": 7200
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [129.12, 61.48]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "demo_route"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [129.73, 62.03],
+          [129.12, 61.48],
+          [127.45, 60.72]
+        ]
+      }
+    }
+  ]
+}
+
+

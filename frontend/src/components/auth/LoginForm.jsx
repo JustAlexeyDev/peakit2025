@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../modules/hooks/useAuth.js';
 import './LoginForm.css';
 
@@ -9,13 +10,19 @@ const LoginForm = ({ onSuccess }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const { sendVerificationCode, login } = useAuth();
+  const { sendVerificationCode, login, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/Profile');
+    }
+  }, [isAuthenticated, navigate]);
 
   const formatPhone = (value) => {
     const digits = value.replace(/\D/g, '');
     const parts = [];
     let idx = 0;
-    // enforce Russian format starting with 7
     const leading = digits.startsWith('8') ? '7' : (digits.startsWith('7') ? '7' : '7');
     const rest = digits.replace(/^[78]?/, '');
     const a = rest.slice(0, 3);
@@ -32,7 +39,6 @@ const LoginForm = ({ onSuccess }) => {
   };
 
   const normalizePhone = (value) => {
-    // convert any input to E.164 +7XXXXXXXXXX expected by backend
     const digits = value.replace(/\D/g, '');
     const national = digits.replace(/^([78])?/, '');
     return `+7${national.slice(0,10)}`;

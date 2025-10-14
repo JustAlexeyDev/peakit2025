@@ -1,0 +1,121 @@
+.profile {
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile__header {
+
+  position: relative;
+  padding-bottom: 56px;
+}
+
+.profile__cover {
+  height: 140px;
+  background: linear-gradient(135deg, #2a2a2a, #1d1d1d 60%, #0f0f0f);
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  
+}
+
+.profile__avatar-wrapper {
+  position: absolute;
+  left: 24px;
+  bottom: -36px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile__avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--background--color);
+  background: #2a2a2a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  aspect-ratio: 1/1 !important;
+}
+
+.profile__avatar-edit {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent--color);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--background--color);
+  cursor: pointer;
+  aspect-ratio: 1/1 !important;
+}
+
+.profile__title {
+  margin-top: 28px;
+  padding: 0 20px;
+}
+
+.profile__name {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.profile__subtitle {
+  margin-top: 4px;
+  color: #c6c6c8;
+  font-size: 14px;
+}
+
+.profile__actions {
+  display: flex;
+  gap: 12px;
+  padding: 16px 20px 0 20px;
+}
+
+.profile__btn {
+  background: var(--background--second--color);
+  color: var(--text--color);
+  border: 1px solid #333;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.profile__btn--primary {
+  background: var(--accent--color);
+  border: none;
+}
+
+.profile__grid {
+  display: grid;
+  gap: 12px;
+}
+
+.profile__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  text-align: center;
+}
+
+.profile__stat strong {
+  display: block;
+  font-size: 18px;
+}
+
+.profile__stat span {
+  color: #c6c6c8;
+  font-size: 12px;
+}
+

@@ -3,6 +3,7 @@
   "module": "src/index.jsx",
   "type": "module",
   "private": true,
+  "proxy": "http://127.0.0.1:8000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

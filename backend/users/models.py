@@ -27,6 +27,7 @@ class CustomUser(AbstractUser):
     
     # Профиль пользователя
     full_name = models.CharField(max_length=255, blank=True, verbose_name='Полное имя')
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True, verbose_name='Аватар')
     
     # Статистика
     last_activity = models.DateTimeField(default=timezone.now, verbose_name='Последняя активность')

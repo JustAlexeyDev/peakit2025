@@ -99,7 +99,7 @@ class PointOfInterestViewSet(viewsets.ReadOnlyModelViewSet):
                 },
                 "geometry": {
                     "type": "Point",
-                    "coordinates": [poi.longitude, poi.latitude]
+                    "coordinates": [poi.latitude, poi.longitude]
                 }
             }
             features.append(feature)
@@ -149,7 +149,7 @@ class RouteViewSet(viewsets.ReadOnlyModelViewSet):
                 },
                 "geometry": {
                     "type": "Point",
-                    "coordinates": [poi.longitude, poi.latitude]
+                    "coordinates": [poi.latitude, poi.longitude]
                 }
             })
         
@@ -202,8 +202,8 @@ class ConfigViewSet(viewsets.ViewSet):
                 'auto_pause_music': True
             },
             'map_settings': {
-                'initial_center': [129.73, 62.03],  # Якутск
-                'initial_zoom': 10,
+                'initial_center': [62.03, 129.73],  # Якутск (широта, долгота)
+                'initial_zoom': 8,
                 'offline_tile_url': '/tiles/{z}/{x}/{y}.png'
             }
         }

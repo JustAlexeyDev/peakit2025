@@ -9,8 +9,9 @@ const RoutePolyline = ({ route, isActive = true }) => {
       geometry={route}
       options={{
         strokeColor: isActive ? '#007aff' : '#8e8e93',
-        strokeWidth: 4,
-        strokeOpacity: 0.7
+        strokeWidth: 6,
+        strokeOpacity: 0.8,
+        strokeStyle: 'solid'
       }}
     />
   );

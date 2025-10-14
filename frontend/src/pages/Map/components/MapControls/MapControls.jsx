@@ -8,7 +8,9 @@ const MapControls = ({
   onStartRoute, 
   isOffline,
   onZoomIn,
-  onZoomOut 
+  onZoomOut,
+  center,
+  zoom
 }) => {
   
   const handleCurrentPosition = () => {
@@ -25,9 +27,16 @@ const MapControls = ({
             }
           },
           (error) => {
-            return 0
+            console.error('Geolocation error:', error);
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 60000
           }
         );
+      } else {
+        console.error('Геолокация не поддерживается вашим браузером');
       }
     }
   };
@@ -46,16 +55,23 @@ const MapControls = ({
     }
   };
 
+  const handleResetView = () => {
+    if (mapRef.current) {
+      // Возвращаем к начальному виду (Якутск)
+      mapRef.current.setCenter([62.03, 129.73], 8, { duration: 500 });
+    }
+  };
+
   return (
     <div className="map-controls">
       {/* Кнопка старта маршрута */}
-      <button 
+      {/* <button 
         className="map-controls__btn map-controls__btn--primary"
         onClick={onStartRoute}
         title="Начать маршрут"
       >
         🚗 Старт
-      </button>
+      </button> */}
 
       {/* Основные элементы управления */}
       <div className="map-controls__group">
@@ -64,7 +80,7 @@ const MapControls = ({
           onClick={handleCurrentPosition}
           title="Текущее местоположение"
         >
-          📍
+          {userLocation ? '📍' : '🔍'}
         </button>
         
         <div className="map-controls__zoom">
@@ -83,6 +99,14 @@ const MapControls = ({
             -
           </button>
         </div>
+        
+        <button 
+          className="map-controls__btn map-controls__btn--reset"
+          onClick={handleResetView}
+          title="Сбросить вид"
+        >
+          🏠
+        </button>
       </div>
 
       {/* Индикатор офлайн режима */}

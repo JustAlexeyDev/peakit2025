@@ -55,7 +55,16 @@ export class AuthService {
 
   static async updateProfile(profileData) {
     try {
-      const response = await apiService.put('/auth/users/profile/', profileData);
+      // If profileData contains a file, send as FormData
+      const formData = new FormData();
+      
+      Object.keys(profileData).forEach(key => {
+        if (profileData[key] !== null && profileData[key] !== undefined) {
+          formData.append(key, profileData[key]);
+        }
+      });
+      
+      const response = await apiService.put('/auth/users/profile/', formData);
       return response;
     } catch (error) {
       console.error('Error updating profile:', error);
