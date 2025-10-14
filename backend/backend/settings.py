@@ -161,8 +161,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
-    "http://localhost:5173",  # Vite default port
+    "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "*"
 ]
 
 # Swagger settings
@@ -176,8 +177,6 @@ SWAGGER_SETTINGS = {
     },
     'USE_SESSION_AUTH': False,
 }
-
-# Logging configuration
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -195,7 +194,7 @@ LOGGING = {
 
 # SMS service configuration (для демо)
 SMS_SERVICE = {
-    'debug': True,  # В режиме отладки не отправляем реальные SMS
+    'debug': True,
 }
 
 # JWT Configuration
