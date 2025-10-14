@@ -1,0 +1,37 @@
+.quick-actions__title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.quick-actions__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.quick-actions__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  color: #fff !important;
+}
+
+.quick-actions__item:hover {
+  transform: scale(1.05);
+}
+
+.quick-actions__icon {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.quick-actions__label {
+  font-size: 14px;
+  color: #000;
+}

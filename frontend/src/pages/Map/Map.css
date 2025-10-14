@@ -1,26 +1,29 @@
-.Map--Container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    height: 100vh !important;
+/* src/pages/Map/Map.css */
+.map-container {
+    position: relative;
     width: 100%;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.Nav--Bar {
-    position: fixed;
-    right: 0;
-    margin-top: 50%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: end;
+.offline-indicator {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 193, 7, 0.9);
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 
-.Nav--Bar button {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 16px;
-    border-radius: 10000px;
-}
-.Nav--Bar__btn {
-    aspect-ratio: 1/1;
+/* Адаптивность */
+@media (max-width: 768px) {
+    .map-container {
+        height: calc(100vh - 60px);
+    }
 }

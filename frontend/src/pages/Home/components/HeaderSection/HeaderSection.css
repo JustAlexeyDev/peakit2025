@@ -1,0 +1,17 @@
+.header-section {
+  padding: 60px 20px 20px;
+  text-align: center;
+}
+
+.header-section__greeting {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  color: #fff;
+}
+
+.header-section__subtitle {
+  font-size: 17px;
+  color: var(--text--color);
+  margin: 0 0 15px 0;
+}

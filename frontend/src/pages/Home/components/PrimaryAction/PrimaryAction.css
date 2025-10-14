@@ -1,0 +1,26 @@
+.primary-action {
+  background-color: #007aff;
+  color: white;
+  border: none;
+  margin: 0 20px 25px;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: calc(100% - 40px);
+}
+
+.primary-action:hover {
+  background-color: #0056cc;
+}
+
+.primary-action--disabled {
+  background-color: #c6c6c8;
+  cursor: not-allowed;
+}
+
+.primary-action--disabled:hover {
+  background-color: #c6c6c8;
+}

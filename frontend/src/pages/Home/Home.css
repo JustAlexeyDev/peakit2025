@@ -1,0 +1,6 @@
+.home {
+  background-color: var(--background--color);
+  color: var(--text--color) !important;
+  min-height: 100vh;
+  padding-bottom: 30px;
+}

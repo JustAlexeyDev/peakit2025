@@ -1,0 +1,32 @@
+.next-point-card__title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.next-point-card__info {
+  margin-bottom: 10px;
+}
+
+.next-point-card__name {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.next-point-card__details {
+  display: flex;
+  gap: 15px;
+}
+
+.next-point-card__detail {
+  font-size: 16px;
+  color: #8e8e93;
+}
+
+.next-point-card__hint {
+  font-size: 15px;
+  color: #8e8e93;
+  font-style: italic;
+  margin: 0;
+}
