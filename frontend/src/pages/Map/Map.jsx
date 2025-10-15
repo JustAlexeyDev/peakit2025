@@ -57,7 +57,6 @@ const Map = () => {
             setLoading(true);
             setError(null);
             
-            // Загружаем конфигурацию и данные маршрута параллельно
             const [config, routeData] = await Promise.all([
                 MapService.getAppConfig(),
                 GeoJsonService.loadRouteData()
@@ -66,12 +65,10 @@ const Map = () => {
             setAppConfig(config);
             setRouteData(routeData);
             
-            // Устанавливаем начальные настройки карты из конфигурации
             if (config && config.map_settings) {
                 setCenter(config.map_settings.initial_center);
                 setZoom(config.map_settings.initial_zoom);
             } else {
-                // Fallback координаты для Якутска
                 setCenter([62.03, 129.73]);
                 setZoom(8);
             }
@@ -79,7 +76,6 @@ const Map = () => {
         } catch (err) {
             console.error('Error initializing map:', err);
             setError('Ошибка загрузки данных карты');
-            // Загружаем демо данные в случае ошибки
             const demoData = GeoJsonService.getDemoData();
             setRouteData(demoData);
         } finally {
@@ -120,7 +116,6 @@ const Map = () => {
 
     const handleStartRoute = () => {
         if (routeData.route && routeData.route.length > 0) {
-            // Центрируем на первой точке маршрута
             setCenter(routeData.route[0]);
             setZoom(10);
             setIsRouteActive(true);
